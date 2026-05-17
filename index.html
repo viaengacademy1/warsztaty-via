@@ -545,7 +545,7 @@
   const EMAILJS_TEMPLATE_ID  = template_dsvvh8c
   // ─────────────────────────────────────────────
 
-  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  try { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); } catch(e) {}
 
   const workshopsData = {
     '4-6': [
