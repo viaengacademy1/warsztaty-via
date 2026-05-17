@@ -1,58 +1,139 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Zapisy na Warsztaty – VIA English Academy</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Zapisy na Warsztaty Językowe – VIA English Academy</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <style>
 
+:root{
+  --cream:#FAF8F3;
+  --warm-white:#FFFEF9;
+  --ink:#1A1714;
+  --ink-soft:#4A4540;
+  --ink-muted:#8A827A;
+  --accent:#2D6A4F;
+  --accent-light:#E8F3EE;
+  --accent-mid:#52B788;
+  --border:rgba(26,23,20,0.10);
+  --border-strong:rgba(26,23,20,0.20);
+  --danger:#B5381E;
+  --danger-bg:#FDF0ED;
+  --radius:12px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
 body{
   font-family:'DM Sans',sans-serif;
-  background:#faf8f3;
-  padding:40px 20px;
-  color:#1a1714;
+  background:var(--cream);
+  color:var(--ink);
+  min-height:100vh;
+  padding-bottom:4rem;
+}
+
+.page-header{
+  background:var(--ink);
+  color:var(--cream);
+  text-align:center;
+  padding:3rem 1.5rem;
+}
+
+.page-header h1{
+  font-family:'Fraunces',serif;
+  font-size:clamp(2rem,5vw,2.8rem);
+  font-weight:300;
+  line-height:1.1;
+}
+
+.page-header em{
+  color:var(--accent-mid);
+}
+
+.page-header p{
+  margin-top:1rem;
+  color:rgba(255,255,255,.7);
+  font-size:14px;
 }
 
 .container{
   max-width:700px;
   margin:auto;
+  padding:0 1.2rem;
+}
+
+.form-card{
   background:white;
-  padding:30px;
+  margin-top:2rem;
+  padding:2rem;
   border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.05);
+  border:1px solid var(--border);
 }
 
-h1{
-  font-family:'Fraunces',serif;
-  font-weight:300;
-  margin-bottom:30px;
+.section-label{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--accent);
+  margin-bottom:1.5rem;
 }
 
-.section{
-  margin-bottom:30px;
+.row-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
 
-label{
+@media(max-width:500px){
+  .row-2{
+    grid-template-columns:1fr;
+  }
+}
+
+.field{
+  margin-bottom:1.2rem;
+}
+
+.field label{
   display:block;
-  margin-bottom:8px;
-  font-size:14px;
+  margin-bottom:6px;
+  font-size:13px;
   font-weight:500;
 }
 
-input, textarea{
+.field input,
+.field textarea{
   width:100%;
   padding:12px;
   border-radius:10px;
-  border:1px solid #ddd;
+  border:1px solid var(--border-strong);
+  background:var(--cream);
   font-size:14px;
-  margin-bottom:16px;
+  font-family:'DM Sans',sans-serif;
+}
+
+.field textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.divider{
+  height:1px;
+  background:var(--border);
+  margin:2rem 0;
 }
 
 .age-grid{
@@ -61,163 +142,277 @@ input, textarea{
   gap:10px;
 }
 
+@media(max-width:500px){
+  .age-grid{
+    grid-template-columns:1fr;
+  }
+}
+
 .age-card{
-  border:2px solid #ddd;
+  background:var(--cream);
+  border:1.5px solid var(--border-strong);
+  border-radius:12px;
   padding:16px;
-  border-radius:14px;
   text-align:center;
   cursor:pointer;
-  transition:.2s;
-  background:#faf8f3;
+  transition:.15s;
+}
+
+.age-card:hover{
+  border-color:var(--accent-mid);
 }
 
 .age-card.selected{
-  border-color:#2d6a4f;
-  background:#e8f3ee;
+  border-color:var(--accent);
+  background:var(--accent-light);
+}
+
+.age-emoji{
+  font-size:24px;
+  display:block;
+  margin-bottom:8px;
+}
+
+.age-range{
+  display:block;
+  font-weight:600;
+  font-size:17px;
+}
+
+.age-desc{
+  font-size:11px;
+  color:var(--ink-muted);
+  margin-top:3px;
 }
 
 .ws-grid{
   display:flex;
   flex-wrap:wrap;
-  gap:10px;
-  margin-top:15px;
+  gap:8px;
 }
 
 .ws-pill{
-  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 13px;
   border-radius:999px;
-  border:1px solid #ccc;
+  border:1px solid var(--border-strong);
+  background:var(--cream);
   cursor:pointer;
-  transition:.2s;
-  background:#faf8f3;
+  transition:.15s;
+  font-size:13px;
 }
 
 .ws-pill.selected{
-  background:#2d6a4f;
+  background:var(--accent);
+  border-color:var(--accent);
   color:white;
-  border-color:#2d6a4f;
 }
 
-button{
+.special-tag{
+  font-size:9px;
+  background:rgba(255,255,255,.2);
+  padding:2px 5px;
+  border-radius:4px;
+  text-transform:uppercase;
+}
+
+.no-age-hint{
+  padding:14px;
+  border:1px dashed var(--border-strong);
+  border-radius:10px;
+  color:var(--ink-muted);
+  font-size:13px;
+}
+
+.btn-submit{
   width:100%;
   padding:14px;
   border:none;
-  border-radius:14px;
-  background:#2d6a4f;
+  border-radius:12px;
+  background:var(--accent);
   color:white;
   font-size:15px;
   cursor:pointer;
 }
 
-button:disabled{
+.btn-submit:disabled{
   opacity:.6;
 }
 
-.success{
+.err-msg{
   display:none;
-  text-align:center;
-  padding:30px;
+  color:var(--danger);
+  font-size:12px;
+  margin-top:6px;
 }
 
-.error{
-  color:#b5381e;
-  font-size:13px;
-  margin-top:8px;
+#global-error{
   display:none;
-}
-
-.no-age{
-  padding:15px;
-  border:1px dashed #ccc;
+  margin-top:1rem;
+  padding:12px;
   border-radius:10px;
-  color:#777;
+  background:var(--danger-bg);
+  color:var(--danger);
+  font-size:13px;
+}
+
+#success-screen{
+  display:none;
+  background:white;
+  margin-top:2rem;
+  padding:3rem;
+  border-radius:20px;
+  text-align:center;
+}
+
+.spinner{
+  width:16px;
+  height:16px;
+  border:2px solid rgba(255,255,255,.4);
+  border-top-color:white;
+  border-radius:50%;
+  display:inline-block;
+  animation:spin .6s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="container">
-
-<h1>Zapisy na warsztaty językowe</h1>
-
-<div id="form-wrapper">
-
-<div class="section">
-<label>Imię dziecka</label>
-<input type="text" id="child-name">
-
-<label>Wiek dziecka</label>
-<input type="text" id="child-age">
+<div class="page-header">
+  <h1>Warsztaty <br><em>językowe</em></h1>
+  <p>Wypełnij formularz, aby zapisać dziecko.</p>
 </div>
 
-<div class="section">
+<div class="container">
 
-<label>Wybierz grupę wiekową</label>
+<div class="form-card" id="form-card">
+
+<div class="section-label">
+Dane dziecka
+</div>
+
+<div class="row-2">
+
+<div class="field">
+<label>Imię i nazwisko dziecka</label>
+<input type="text" id="imie-dziecka">
+</div>
+
+<div class="field">
+<label>Wiek dziecka</label>
+<input type="text" id="wiek">
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<div class="section-label">
+Wybór grupy i warsztatów
+</div>
+
+<div class="field">
+
+<label>Grupa wiekowa</label>
 
 <div class="age-grid">
 
-<div class="age-card" data-age="4-6">
-🌱<br>
-4–6 lat
+<div class="age-card" onclick="selectAge('4-6', this)">
+<span class="age-emoji">🌱</span>
+<span class="age-range">4–6 lat</span>
+<span class="age-desc">Przedszkolaki</span>
 </div>
 
-<div class="age-card" data-age="7-10">
-📚<br>
-7–10 lat
+<div class="age-card" onclick="selectAge('7-10', this)">
+<span class="age-emoji">📚</span>
+<span class="age-range">7–10 lat</span>
+<span class="age-desc">Szkoła podstawowa</span>
 </div>
 
-<div class="age-card" data-age="11-14">
-🚀<br>
-11–14 lat
-</div>
-
-</div>
-
-</div>
-
-<div class="section">
-
-<label>Tematy warsztatów</label>
-
-<div id="workshops-container">
-<div class="no-age">
-Najpierw wybierz grupę wiekową ↑
-</div>
-</div>
-
-<div class="error" id="ws-error">
-Wybierz przynajmniej jeden warsztat.
+<div class="age-card" onclick="selectAge('11-14', this)">
+<span class="age-emoji">🚀</span>
+<span class="age-range">11–14 lat</span>
+<span class="age-desc">Starsze dzieci</span>
 </div>
 
 </div>
 
-<div class="section">
+<div class="err-msg" id="grupa-err">
+Wybierz grupę wiekową
+</div>
 
-<label>Imię rodzica</label>
-<input type="text" id="parent-name">
+</div>
 
+<div class="field">
+
+<label>Warsztaty</label>
+
+<div id="ws-container">
+<div class="no-age-hint">
+↑ Najpierw wybierz grupę wiekową
+</div>
+</div>
+
+<div class="err-msg" id="ws-err">
+Wybierz przynajmniej jeden warsztat
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<div class="section-label">
+Dane rodzica
+</div>
+
+<div class="field">
+<label>Imię i nazwisko</label>
+<input type="text" id="imie-rodzica">
+</div>
+
+<div class="row-2">
+
+<div class="field">
 <label>Email</label>
 <input type="email" id="email">
+</div>
 
+<div class="field">
 <label>Telefon</label>
-<input type="tel" id="phone">
-
-<label>Uwagi</label>
-<textarea id="notes"></textarea>
+<input type="tel" id="telefon">
+</div>
 
 </div>
 
-<button onclick="submitForm()" id="submit-btn">
-Wyślij zgłoszenie
+<div class="field">
+<label>Uwagi</label>
+<textarea id="uwagi"></textarea>
+</div>
+
+<button class="btn-submit" onclick="submitForm()" id="btn-submit">
+Wyślij zgłoszenie →
 </button>
 
+<div id="global-error">
+Nie udało się wysłać formularza
 </div>
 
-<div class="success" id="success-screen">
-<h2>✓ Formularz wysłany</h2>
-<p>Dziękujemy za zgłoszenie.</p>
+</div>
+
+<div id="success-screen">
+<h2>✓ Zgłoszenie wysłane</h2>
+<p>Dziękujemy za zapis.</p>
 </div>
 
 </div>
@@ -225,221 +420,261 @@ Wyślij zgłoszenie
 <script>
 
 /* =========================================
-   EMAILJS
+EMAILJS
 ========================================= */
 
-const EMAILJS_PUBLIC_KEY = "TWOJ_PUBLIC_KEY";
-const EMAILJS_SERVICE_ID = "TWOJ_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "TWOJ_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY = "cO73AHZqe5qKeZNJs";
+const EMAILJS_SERVICE_ID = "ViA_Eng_Academy";
+const EMAILJS_TEMPLATE_ID = "template_dsvvh8c";
 
 emailjs.init({
   publicKey: EMAILJS_PUBLIC_KEY
 });
 
 /* =========================================
-   DANE WARSZTATÓW
+WARSZTATY
 ========================================= */
 
 const workshopsData = {
 
-  "4-6": [
-      { id: 'jungle',  label: 'Jungle Adventure', icon: '🌿' },
-      { id: 'ocean',   label: 'Under the Ocean',         icon: '🐠' },
-      { id: 'chefs',   label: 'Little Chefs',            icon: '👨‍🍳' },
-      { id: 'dino',    label: 'Dinosaur Explorers',      icon: '🦕' },
-      { id: 'space',   label: 'Space Mission',           icon: '🛸' },
-      { id: 'safari',  label: 'Safari Adventure',        icon: '🦁' },
-      { id: 'pirate',  label: 'Pirate Island',           icon: '🏴‍☠️' }
-  ],
+'4-6': [
+  { id:'jungle', label:'Jungle Adventure', icon:'🌿' },
+  { id:'ocean', label:'Under the Ocean', icon:'🐠' },
+  { id:'chefs', label:'Little Chefs', icon:'👨‍🍳' },
+  { id:'dino', label:'Dinosaur Explorers', icon:'🦕' },
+  { id:'space', label:'Space Mission', icon:'🛸' },
+  { id:'safari', label:'Safari Adventure', icon:'🦁' },
+  { id:'pirate', label:'Pirate Island', icon:'🏴‍☠️' },
+],
 
-  "7-10": [
-      { id: 'jungle',  label: 'Jungle Adventure', icon: '🌿' },
-      { id: 'ocean',   label: 'Under the Ocean',         icon: '🐠' },
-      { id: 'chefs',   label: 'Little Chefs',            icon: '👨‍🍳' },
-      { id: 'dino',    label: 'Dinosaur Explorers',      icon: '🦕' },
-      { id: 'space',   label: 'Space Mission',           icon: '🛸' },
-      { id: 'safari',  label: 'Safari Adventure',        icon: '🦁' },
-      { id: 'pirate',  label: 'Pirate Island',           icon: '🏴‍☠️' }
-  ],
+'7-10': [
+  { id:'jungle', label:'Jungle Adventure', icon:'🌿' },
+  { id:'ocean', label:'Under the Ocean', icon:'🐠' },
+  { id:'chefs', label:'Little Chefs', icon:'👨‍🍳' },
+  { id:'dino', label:'Dinosaur Explorers', icon:'🦕' },
+  { id:'space', label:'Space Mission', icon:'🛸' },
+  { id:'safari', label:'Safari Adventure', icon:'🦁' },
+  { id:'pirate', label:'Pirate Island', icon:'🏴‍☠️' },
+],
 
-  "11-14": [
-      { id: 'airport',  label: 'Airport Challenge',              icon: '✈️' },
-      { id: 'spy',      label: 'Spy Academy',                    icon: '🕵️' },
-      { id: 'youtube',  label: 'YouTube Creator Studio',         icon: '🎬' },
-      { id: 'eco',      label: 'Eco Rangers',                    icon: '🌍' },
-      { id: 'inventors',label: 'Inventors Lab',                  icon: '💡' },
-      { id: 'travel',   label: 'Travel Festival',                icon: '🗺️' },
-      { id: 'brand',    label: 'Personal Brand Starter',         icon: '⭐' },
-      { id: 'ai',       label: 'Future Jobs & AI',               icon: '🤖', special: 'edycja specjalna' },
-      { id: 'debate',   label: 'Teen Debate Club',               icon: '🗣️' },
-      { id: 'culture',  label: 'Travel & Culture Talk',          icon: '🌐' },
-  ]
+'11-14': [
+  { id:'airport', label:'Airport Challenge', icon:'✈️' },
+  { id:'spy', label:'Spy Academy', icon:'🕵️' },
+  { id:'youtube', label:'YouTube Creator Studio', icon:'🎬' },
+  { id:'eco', label:'Eco Rangers', icon:'🌍' },
+  { id:'inventors', label:'Inventors Lab', icon:'💡' },
+  { id:'travel', label:'Travel Festival', icon:'🗺️' },
+  { id:'brand', label:'Personal Brand Starter', icon:'⭐' },
+  { id:'ai', label:'Future Jobs & AI', icon:'🤖', special:'edycja specjalna' },
+  { id:'debate', label:'Teen Debate Club', icon:'🗣️' },
+  { id:'culture', label:'Travel & Culture Talk', icon:'🌐' },
+]
 
 };
 
 /* =========================================
-   STATE
+STATE
 ========================================= */
 
 let selectedAge = null;
-let selectedWorkshops = new Set();
+let selectedWs = new Set();
 
 /* =========================================
-   SELECT AGE
+SELECT AGE
 ========================================= */
 
-document.querySelectorAll(".age-card").forEach(card => {
+function selectAge(age, cardEl){
 
-  card.addEventListener("click", () => {
+  selectedAge = age;
 
-    document.querySelectorAll(".age-card")
-      .forEach(c => c.classList.remove("selected"));
+  selectedWs.clear();
 
-    card.classList.add("selected");
-
-    selectedAge = card.dataset.age;
-
-    selectedWorkshops.clear();
-
-    renderWorkshops();
-
+  document.querySelectorAll('.age-card').forEach(card=>{
+    card.classList.remove('selected');
   });
 
-});
+  cardEl.classList.add('selected');
+
+  document.getElementById('grupa-err').style.display = 'none';
+
+  renderWorkshops();
+}
 
 /* =========================================
-   RENDER WORKSHOPS
+RENDER WORKSHOPS
 ========================================= */
 
 function renderWorkshops(){
 
-  const container = document.getElementById("workshops-container");
+  const container = document.getElementById('ws-container');
 
   if(!selectedAge || !workshopsData[selectedAge]){
+
     container.innerHTML = `
-      <div class="no-age">
+      <div class="no-age-hint">
         Brak warsztatów
       </div>
     `;
+
     return;
   }
 
-  container.innerHTML = "";
+  container.innerHTML = '';
 
-  const grid = document.createElement("div");
-  grid.className = "ws-grid";
+  const grid = document.createElement('div');
 
-  workshopsData[selectedAge].forEach(workshop => {
+  grid.className = 'ws-grid';
 
-    const pill = document.createElement("div");
+  workshopsData[selectedAge].forEach(workshop=>{
 
-    pill.className = "ws-pill";
+    const pill = document.createElement('div');
 
-    pill.innerHTML = workshop.label;
+    pill.className = 'ws-pill';
 
-    pill.addEventListener("click", () => {
-
-      if(selectedWorkshops.has(workshop.id)){
-        selectedWorkshops.delete(workshop.id);
-        pill.classList.remove("selected");
-      } else {
-        selectedWorkshops.add(workshop.id);
-        pill.classList.add("selected");
+    pill.innerHTML = `
+      <span>${workshop.icon}</span>
+      ${workshop.label}
+      ${
+        workshop.special
+        ? `<span class="special-tag">${workshop.special}</span>`
+        : ''
       }
+    `;
 
-      document.getElementById("ws-error").style.display = "none";
-
-    });
+    pill.onclick = ()=>toggleWs(workshop.id,pill);
 
     grid.appendChild(pill);
 
   });
 
   container.appendChild(grid);
-
 }
 
 /* =========================================
-   QR AUTOSELECT
+TOGGLE WORKSHOP
 ========================================= */
 
-function autoSelectAgeFromQR(){
+function toggleWs(id,el){
+
+  if(selectedWs.has(id)){
+
+    selectedWs.delete(id);
+
+    el.classList.remove('selected');
+
+  }else{
+
+    selectedWs.add(id);
+
+    el.classList.add('selected');
+  }
+
+  document.getElementById('ws-err').style.display = 'none';
+}
+
+/* =========================================
+AUTO SELECT FROM QR
+np. ?group=7-10
+========================================= */
+
+function autoSelectFromQR(){
 
   const params = new URLSearchParams(window.location.search);
 
-  const qrAge = params.get("group");
+  const qrGroup = params.get('group');
 
-  if(!qrAge) return;
+  if(!qrGroup) return;
 
   const matchingCard = document.querySelector(
-    `.age-card[data-age="${qrAge}"]`
+    `.age-card[onclick*="${qrGroup}"]`
   );
 
   if(matchingCard){
 
-    matchingCard.click();
-
+    selectAge(qrGroup, matchingCard);
   }
-
 }
 
-autoSelectAgeFromQR();
+autoSelectFromQR();
 
 /* =========================================
-   SUBMIT
+VALIDATE
+========================================= */
+
+function validate(){
+
+  let ok = true;
+
+  if(!selectedAge){
+
+    document.getElementById('grupa-err').style.display = 'block';
+
+    ok = false;
+  }
+
+  if(selectedWs.size === 0){
+
+    document.getElementById('ws-err').style.display = 'block';
+
+    ok = false;
+  }
+
+  return ok;
+}
+
+/* =========================================
+SUBMIT
 ========================================= */
 
 async function submitForm(){
 
-  if(!selectedAge){
-    alert("Wybierz grupę wiekową");
-    return;
-  }
+  if(!validate()) return;
 
-  if(selectedWorkshops.size === 0){
-    document.getElementById("ws-error").style.display = "block";
-    return;
-  }
-
-  const btn = document.getElementById("submit-btn");
+  const btn = document.getElementById('btn-submit');
 
   btn.disabled = true;
-  btn.innerHTML = "Wysyłam...";
 
-  const workshopNames = workshopsData[selectedAge]
-    .filter(w => selectedWorkshops.has(w.id))
-    .map(w => w.label)
-    .join(", ");
+  btn.innerHTML = `
+    <span class="spinner"></span>
+    Wysyłam...
+  `;
+
+  const wsNames = workshopsData[selectedAge]
+    .filter(w=>selectedWs.has(w.id))
+    .map(w=>w.label)
+    .join(', ');
 
   const params = {
 
-    child_name:
-      document.getElementById("child-name").value,
+    to_email:'via.engacademy@gmail.com',
 
-    child_age:
-      document.getElementById("child-age").value,
+    imie_dziecka:
+      document.getElementById('imie-dziecka').value,
 
-    parent_name:
-      document.getElementById("parent-name").value,
+    wiek_dziecka:
+      document.getElementById('wiek').value,
 
-    email:
-      document.getElementById("email").value,
-
-    phone:
-      document.getElementById("phone").value,
-
-    notes:
-      document.getElementById("notes").value,
-
-    age_group:
+    grupa:
       selectedAge,
 
-    workshops:
-      workshopNames
+    warsztaty:
+      wsNames,
+
+    imie_rodzica:
+      document.getElementById('imie-rodzica').value,
+
+    email_rodzica:
+      document.getElementById('email').value,
+
+    telefon:
+      document.getElementById('telefon').value,
+
+    uwagi:
+      document.getElementById('uwagi').value
 
   };
 
-  try {
+  try{
 
     await emailjs.send(
       EMAILJS_SERVICE_ID,
@@ -447,26 +682,25 @@ async function submitForm(){
       params
     );
 
-    document.getElementById("form-wrapper").style.display = "none";
+    document.getElementById('form-card').style.display='none';
 
-    document.getElementById("success-screen").style.display = "block";
+    document.getElementById('success-screen').style.display='block';
 
     window.scrollTo({
       top:0,
-      behavior:"smooth"
+      behavior:'smooth'
     });
 
-  } catch(err){
+  }catch(err){
 
     console.error(err);
 
-    alert("Błąd wysyłki formularza");
+    document.getElementById('global-error').style.display='block';
 
     btn.disabled = false;
-    btn.innerHTML = "Wyślij zgłoszenie";
 
+    btn.innerHTML = 'Wyślij zgłoszenie →';
   }
-
 }
 
 </script>
