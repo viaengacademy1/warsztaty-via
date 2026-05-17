@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zapisy na Warsztaty Językowe – VIA English Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+  :root {
+    --cream: #FAF8F3;
+    --warm-white: #FFFEF9;
+    --ink: #1A1714;
+    --ink-soft: #4A4540;
+    --ink-muted: #8A827A;
+    --accent: #2D6A4F;
+    --accent-light: #E8F3EE;
+    --accent-mid: #52B788;
+    --border: rgba(26,23,20,0.10);
+    --border-strong: rgba(26,23,20,0.20);
+    --danger: #B5381E;
+    --danger-bg: #FDF0ED;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 0 0 4rem;
+  }
+
+  /* ── Header ── */
+  .page-header {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(82,183,136,0.12);
+  }
+
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -40px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(82,183,136,0.07);
+  }
+
+  .header-badge {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    border: 1px solid rgba(82,183,136,0.4);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 1.2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-header h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--warm-white);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0.6rem;
+  }
+
+  .page-header h1 em {
+    font-style: italic;
+    color: var(--accent-mid);
+  }
+
+  .page-header p {
+    font-size: 14px;
+    color: rgba(250,248,243,0.65);
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.65;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Form container ── */
+  .container {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  .form-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem 2rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    .form-card { padding: 1.5rem 1.25rem; }
+  }
+
+  /* ── Section headings ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── Fields ── */
+  .field { margin-bottom: 1.25rem; }
+
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+  }
+
+  .field label .req { color: var(--accent); margin-left: 2px; }
+
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="tel"],
+  .field textarea {
+    width: 100%;
+    padding: 11px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--cream);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+    -webkit-appearance: none;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    border-color: var(--accent-mid);
+    box-shadow: 0 0 0 3px rgba(82,183,136,0.15);
+    background: #fff;
+  }
+
+  .field textarea {
+    height: 80px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+
+  .field input.error,
+  .field textarea.error {
+    border-color: var(--danger);
+    background: var(--danger-bg);
+  }
+
+  .field .err-msg {
+    font-size: 11px;
+    color: var(--danger);
+    margin-top: 5px;
+    display: none;
+  }
+
+  .field.has-error .err-msg { display: block; }
+
+  .row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  @media (max-width: 440px) {
+    .row-2 { grid-template-columns: 1fr; }
+  }
+
+  /* ── Age cards ── */
+  .age-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 0.25rem;
+  }
+
+  @media (max-width: 400px) {
+    .age-grid { grid-template-columns: 1fr; }
+  }
+
+  .age-card {
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--radius);
+    padding: 16px 10px 14px;
+    cursor: pointer;
+    text-align: center;
+    background: var(--cream);
+    transition: all 0.15s;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .age-card:hover { border-color: var(--accent-mid); background: #f5faf7; }
+
+  .age-card.selected {
+    border-color: var(--accent);
+    background: var(--accent-light);
+    box-shadow: 0 0 0 3px rgba(45,106,79,0.10);
+  }
+
+  .age-card .age-emoji {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1;
+  }
+
+  .age-card .age-range {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    display: block;
+  }
+
+  .age-card.selected .age-range { color: var(--accent); }
+
+  .age-card .age-desc {
+    font-size: 11px;
+    color: var(--ink-muted);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ── Workshop pills ── */
+  .ws-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ws-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 13px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    background: var(--cream);
+    border: 1px solid var(--border-strong);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.13s;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.2;
+  }
+
+  .ws-pill:hover { border-color: var(--accent-mid); color: var(--ink); background: #f5faf7; }
+
+  .ws-pill.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .ws-pill .pill-icon { font-size: 14px; }
+
+  .ws-pill .special-tag {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.25);
+    padding: 2px 5px;
+    border-radius: 4px;
+    color: rgba(255,255,255,0.9);
+    margin-left: 2px;
+  }
+
+  .ws-pill:not(.selected) .special-tag {
+    background: rgba(45,106,79,0.12);
+    color: var(--accent);
+  }
+
+  .no-age-hint {
+    font-size: 13px;
+    color: var(--ink-muted);
+    padding: 14px;
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-sm);
+    text-align: center;
+  }
+
+  /* ── Divider ── */
+  .divider { height: 1px; background: var(--border); margin: 1.75rem 0; }
+
+  /* ── Submit ── */
+  .submit-area { margin-top: 1.75rem; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-submit:hover { background: #236040; }
+  .btn-submit:active { transform: scale(0.99); }
+  .btn-submit:disabled { background: #a0c4b3; cursor: not-allowed; }
+
+  .privacy-note {
+    font-size: 11px;
+    color: var(--ink-muted);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  /* ── Success screen ── */
+  #success-screen {
+    display: none;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    margin-top: 2rem;
+  }
+
+  .success-icon {
+    width: 64px; height: 64px;
+    background: var(--accent-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-size: 28px;
+  }
+
+  #success-screen h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  #success-screen p {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  /* ── Global error banner ── */
+  #global-error {
+    display: none;
+    background: var(--danger-bg);
+    border: 1px solid rgba(181,56,30,0.25);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--danger);
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="header-badge">✦ Zapisy otwarte</div>
+  <h1>Warsztaty<br><em>językowe</em> dla dzieci</h1>
+  <p>Wypełnij formularz, aby zapisać dziecko. Skontaktujemy się z Tobą w ciągu 2 dni roboczych.</p>
+</div>
+
+<div class="container">
+
+  <!-- FORMULARZ -->
+  <div class="form-card" id="form-card">
+
+    <div class="section-label">Dane dziecka</div>
+
+    <div class="row-2">
+      <div class="field" id="f-imie-dziecka">
+        <label>Imię i nazwisko dziecka <span class="req">*</span></label>
+        <input type="text" id="imie-dziecka" placeholder="np. Zofia Kowalska">
+        <div class="err-msg">Proszę podać imię dziecka.</div>
+      </div>
+      <div class="field" id="f-wiek">
+        <label>Wiek dziecka <span class="req">*</span></label>
+        <input type="text" id="wiek" placeholder="np. 8 lat">
+        <div class="err-msg">Proszę podać wiek dziecka.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-label">Wybór grupy i warsztatów</div>
+
+    <div class="field" id="f-grupa">
+      <label>Grupa wiekowa <span class="req">*</span></label>
+      <div class="age-grid">
+        <div class="age-card" onclick="selectAge('4-6', this)" tabindex="0">
+          <span class="age-emoji">🌱</span>
+          <span class="age-range">4–6 lat</span>
+          <span class="age-desc">Przedszkolaki</span>
+        </div>
+        <div class="age-card" onclick="selectAge('7-10', this)" tabindex="0">
+          <span class="age-emoji">📚</span>
+          <span class="age-range">7–10 lat</span>
+          <span class="age-desc">Szkoła podstawowa</span>
+        </div>
+        <div class="age-card" onclick="selectAge('11-14', this)" tabindex="0">
+          <span class="age-emoji">🚀</span>
+          <span class="age-range">11–14 lat</span>
+          <span class="age-desc">Starsze dzieci</span>
+        </div>
+      </div>
+      <div class="err-msg" id="grupa-err" style="display:none; margin-top:6px;">Proszę wybrać grupę wiekową.</div>
+    </div>
+
+    <div class="field" id="f-warsztaty" style="margin-top:1.25rem;">
+      <label>Warsztaty – wybierz interesujące tematy <span class="req">*</span></label>
+      <div id="ws-container">
+        <div class="no-age-hint">↑ Najpierw wybierz grupę wiekową powyżej</div>
+      </div>
+      <div class="err-msg" id="ws-err" style="display:none; margin-top:8px;">Proszę wybrać przynajmniej jeden temat.</div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-label">Dane rodzica / opiekuna</div>
+
+    <div class="field" id="f-imie-rodzica">
+      <label>Imię i nazwisko <span class="req">*</span></label>
+      <input type="text" id="imie-rodzica" placeholder="np. Anna Kowalska">
+      <div class="err-msg">Proszę podać imię i nazwisko rodzica.</div>
+    </div>
+
+    <div class="row-2">
+      <div class="field" id="f-email">
+        <label>Adres e-mail <span class="req">*</span></label>
+        <input type="email" id="email" placeholder="np. anna@example.com">
+        <div class="err-msg">Proszę podać poprawny e-mail.</div>
+      </div>
+      <div class="field">
+        <label>Telefon kontaktowy</label>
+        <input type="tel" id="telefon" placeholder="np. 600 123 456">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Uwagi / dodatkowe informacje</label>
+      <textarea id="uwagi" placeholder="Np. alergie, specjalne potrzeby, pytania dotyczące zapisów..."></textarea>
+    </div>
+
+    <div class="submit-area">
+      <button class="btn-submit" id="btn-submit" onclick="submitForm()">
+        Wyślij zgłoszenie →
+      </button>
+      <div id="global-error">Nie udało się wysłać. Spróbuj ponownie lub napisz na via.engacademy@gmail.com</div>
+      <p class="privacy-note">🔒 Twoje dane są bezpieczne i wykorzystywane wyłącznie w celu kontaktu w sprawie zapisów.</p>
+    </div>
+
+  </div>
+
+  <!-- SUKCES -->
+  <div id="success-screen">
+    <div class="success-icon">✓</div>
+    <h2>Zgłoszenie wysłane!</h2>
+    <p>Dziękujemy za rejestrację. Skontaktujemy się z Tobą wkrótce, aby potwierdzić szczegóły udziału w warsztatach.</p>
+  </div>
+
+</div>
+
+<script>
+  // ─────────────────────────────────────────────
+  // EMAILJS – uzupełnij po założeniu konta
+  // ─────────────────────────────────────────────
+  const EMAILJS_PUBLIC_KEY   = cO73AHZqe5qKeZNJs
+  const EMAILJS_SERVICE_ID   = ViA_Eng_Academy
+  const EMAILJS_TEMPLATE_ID  = template_dsvvh8c
+  // ─────────────────────────────────────────────
+
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+  const workshopsData = {
+    '4-6': [
+      { id: 'jungle',  label: 'Jungle Adventure',       icon: '🌿' },
+      { id: 'ocean',   label: 'Under the Ocean',         icon: '🐠' },
+      { id: 'chefs',   label: 'Little Chefs',            icon: '👨‍🍳' },
+      { id: 'dino',    label: 'Dinosaur Explorers',      icon: '🦕' },
+      { id: 'space',   label: 'Space Mission',           icon: '🛸' },
+      { id: 'safari',  label: 'Safari Adventure',        icon: '🦁' },
+      { id: 'pirate',  label: 'Pirate Island',           icon: '🏴‍☠️' },
+    ],
+    '7-10': [
+      { id: 'jungle',  label: 'Jungle Adventure',       icon: '🌿' },
+      { id: 'ocean',   label: 'Under the Ocean',         icon: '🐠' },
+      { id: 'chefs',   label: 'Little Chefs',            icon: '👨‍🍳' },
+      { id: 'dino',    label: 'Dinosaur Explorers',      icon: '🦕' },
+      { id: 'space',   label: 'Space Mission',           icon: '🛸' },
+      { id: 'safari',  label: 'Safari Adventure',        icon: '🦁' },
+      { id: 'pirate',  label: 'Pirate Island',           icon: '🏴‍☠️' },
+    ],
+    '11-14': [
+      { id: 'airport',  label: 'Airport Challenge',              icon: '✈️' },
+      { id: 'spy',      label: 'Spy Academy',                    icon: '🕵️' },
+      { id: 'youtube',  label: 'YouTube Creator Studio',         icon: '🎬' },
+      { id: 'eco',      label: 'Eco Rangers',                    icon: '🌍' },
+      { id: 'inventors',label: 'Inventors Lab',                  icon: '💡' },
+      { id: 'travel',   label: 'Travel Festival',                icon: '🗺️' },
+      { id: 'brand',    label: 'Personal Brand Starter',         icon: '⭐' },
+      { id: 'ai',       label: 'Future Jobs & AI',               icon: '🤖', special: 'edycja specjalna' },
+      { id: 'debate',   label: 'Teen Debate Club',               icon: '🗣️' },
+      { id: 'culture',  label: 'Travel & Culture Talk',          icon: '🌐' },
+    ]
+  };
+
+  let selectedAge = null;
+  let selectedWs  = new Set();
+
+  function selectAge(age, cardEl) {
+    selectedAge = age;
+    selectedWs.clear();
+    document.querySelectorAll('.age-card').forEach(c => c.classList.remove('selected'));
+    cardEl.classList.add('selected');
+    document.getElementById('grupa-err').style.display = 'none';
+    renderWorkshops();
+  }
+
+  function renderWorkshops() {
+    const container = document.getElementById('ws-container');
+    container.innerHTML = '';
+    const grid = document.createElement('div');
+    grid.className = 'ws-grid';
+    workshopsData[selectedAge].forEach(w => {
+      const pill = document.createElement('div');
+      pill.className = 'ws-pill';
+      pill.dataset.id = w.id;
+      pill.innerHTML = `<span class="pill-icon">${w.icon}</span>${w.label}${w.special ? `<span class="special-tag">${w.special}</span>` : ''}`;
+      pill.onclick = () => toggleWs(w.id, pill);
+      grid.appendChild(pill);
+    });
+    container.appendChild(grid);
+  }
+
+  function toggleWs(id, el) {
+    if (selectedWs.has(id)) { selectedWs.delete(id); el.classList.remove('selected'); }
+    else                    { selectedWs.add(id);    el.classList.add('selected');    }
+    document.getElementById('ws-err').style.display = 'none';
+  }
+
+  function validate() {
+    let ok = true;
+    const required = [
+      { id: 'imie-dziecka', field: 'f-imie-dziecka', check: v => v.trim() !== '' },
+      { id: 'wiek',         field: 'f-wiek',         check: v => v.trim() !== '' },
+      { id: 'imie-rodzica', field: 'f-imie-rodzica', check: v => v.trim() !== '' },
+      { id: 'email',        field: 'f-email',        check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+    ];
+    required.forEach(r => {
+      const el   = document.getElementById(r.id);
+      const wrap = document.getElementById(r.field);
+      const pass = r.check(el.value);
+      wrap.classList.toggle('has-error', !pass);
+      el.classList.toggle('error', !pass);
+      if (!pass) ok = false;
+    });
+    if (!selectedAge) {
+      document.getElementById('grupa-err').style.display = 'block';
+      ok = false;
+    }
+    if (selectedAge && selectedWs.size === 0) {
+      document.getElementById('ws-err').style.display = 'block';
+      ok = false;
+    }
+    return ok;
+  }
+
+  async function submitForm() {
+    if (!validate()) return;
+
+    const btn = document.getElementById('btn-submit');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> Wysyłam...';
+    document.getElementById('global-error').style.display = 'none';
+
+    const wsNames = workshopsData[selectedAge]
+      .filter(w => selectedWs.has(w.id))
+      .map(w => w.label)
+      .join(', ');
+
+    const params = {
+      to_email:       'via.engacademy@gmail.com',
+      imie_dziecka:   document.getElementById('imie-dziecka').value.trim(),
+      wiek_dziecka:   document.getElementById('wiek').value.trim(),
+      grupa:          selectedAge + ' lat',
+      warsztaty:      wsNames,
+      imie_rodzica:   document.getElementById('imie-rodzica').value.trim(),
+      email_rodzica:  document.getElementById('email').value.trim(),
+      telefon:        document.getElementById('telefon').value.trim() || '—',
+      uwagi:          document.getElementById('uwagi').value.trim()   || '—',
+    };
+
+    try {
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+      document.getElementById('form-card').style.display = 'none';
+      document.getElementById('success-screen').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      console.error(err);
+      document.getElementById('global-error').style.display = 'block';
+      btn.disabled = false;
+      btn.innerHTML = 'Wyślij zgłoszenie →';
+    }
+  }
+
+  document.querySelectorAll('.age-card').forEach(card => {
+    card.addEventListener('keydown', e => {
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); card.click(); }
+    });
+  });
+</script>
+</body>
+</html>
